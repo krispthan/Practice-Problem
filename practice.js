@@ -132,4 +132,38 @@ function BubbleSort(arr){
     while (swapped === true);
   
 }
-console.log(numberArr);
+
+
+/*findMode: Given an array of numbers, find the number that occurs the most often for example:
+input [5,2,7,18,2,42,5,2]
+returns 2, since it occurs 3 times. If 2 numbers occur the same amount, return the last one
+Pseudo Code: 
+make an object as number counter
+loop through the object and check if the current number is present in the value 
+if present then will increment 
+if not then will be as "1"
+return outputObj , repeat */
+numberCounterArray = [5,2,7,18,2,42,5,2];
+function findMost (arr){
+    let outputObj = {};
+    numberCounterArray.forEach((item) => {
+        if(!outputObj[item]){
+            outputObj[item] = 1;
+        } else {
+            outputObj[item]++;
+        }
+    })
+    return outputObj;
+  }
+
+  /*
+  getPath: given a path string, return an array with the different parts of the path for
+example: 'folder1/folder2/folder3'
+returns ['folder1','folder2','folder3']
+Pseudo Code:
+convert the string into an array by using split method
+  */
+ let example =  'folder1/folder2/folder3'
+function ConvertStringArray(str){
+    let convertString = str.split("/");
+}
