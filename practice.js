@@ -27,3 +27,25 @@ const greaterThan = input.filter((item) =>{
 })
 
 console.log(greaterThan);
+
+/*Fibonacci Sequence 
+Pseudo Code: 
+write a function that takes in one parameter and prints out the Fibonacci sequence
+start with the first two indexes @ starting point Ex: 0+1 = 1, do not touch these two 
+iterate through the array starting at the second indexes and go through the array until you reach (n+1)
+inside the array take the original array and add the current (index[i-2] + index[i-1]), whatever number that equates to be 
+will be the new number to go into the original array since we need to continue adding the 
+second indexes with its neighbor indexes to get the next fibonacci number
+
+take the total of the starting point and add it up with the next index a[i+1]= 1 + 1 = 2
+repeat 
+*/
+
+ function Fibonacci(n){
+    let input = [ 0, 1]
+     for(let i= 2; i <  n+ 1; i++){
+        input.push(input[i-2] + input[i -1])
+     }
+     return input[n];
+ }
+console.log(fib(4));//should output 3
