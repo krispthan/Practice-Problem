@@ -8,7 +8,7 @@ take the total and add the next index together */
  let sum = num1.reduce((total,num)=>{
      return total + num 
  });
- console.log(sum);
+
 
  /*getAllNamesShorterThan: Given an array of names and a value,
   return an array of only the names shorter than the given value for example:
@@ -26,7 +26,6 @@ const greaterThan = input.filter((item) =>{
     }
 })
 
-console.log(greaterThan);
 
 /*Fibonacci Sequence 
 Pseudo Code: 
@@ -48,7 +47,7 @@ repeat
      }
      return input[n];
  }
-console.log(Fibonacci(4));//should output 3
+
 
 /*CountOccurrences: Given an array of words and a separate word, count how many times 
 a particular word given occurs with that array
@@ -70,4 +69,67 @@ function occurencesOfWords (input, word){
     }
     return count;
 }
-console.log(occurencesOfWords(wordArr,"cat"));
+
+
+/*WordLengths 
+Given an array of words, return an array of num representing the length of each word 
+Pseudo Code: 
+Iterate  through the word and map through each iteration and return the length of each
+Ex: input ['canary','silly','dog','a','mellow'])
+return [6,5,3,1,6]*/
+
+ wordsArr= ['canary','silly','dog','a','mellow'];
+function wordLength (arr){
+    const wordLengths = arr.map((word) => {
+        return word.length;
+   })   
+     return wordLengths;
+}
+
+/*getMinMaxMean: given an array of numbers, get the minimum, maximum, and mean numbers. 
+Return them as an object. 
+Mean is another word for average For example:
+input [3,1,9,12,4]
+return: {min: 1, max: 12, mean: 25.8}*/
+//Mean:
+numberArr = [3,1,9,12,4];
+
+function Average (index){
+    let total = 0;
+    for(let i =0 ; i< index.length; i++){
+        total += index[i];
+        
+    }
+    let average = total / index.length;
+    return average; 
+}
+console.log(Average(numberArr));
+/* find the last element of the array since we are going to only iterate through the second index to the last array
+then create a swap variable to check if the swap condition is true
+create a do loop and change the swap variable to false
+iterate through the loop to the second to the last index of the array 
+check the current index with the next index and create a temp variable
+set the temp variable to the current index
+set the current index with the next index
+set the next index to the temp variable
+change the swap condition to be true 
+get out of the do loop and check while the swap is equal to true 
+*/
+function BubbleSort(arr){
+    let arrLength = arr.length -1;
+    let swapped;
+    do {  
+        swapped= false;
+        for( let i = 0 ; i <arrLength; i++){
+            if(arr[i] > arr[i +1]){
+                let temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] =temp;
+                swapped = true;
+            }
+        }
+    }
+    while (swapped === true);
+  
+}
+console.log(numberArr);
