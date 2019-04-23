@@ -48,4 +48,26 @@ repeat
      }
      return input[n];
  }
-console.log(fib(4));//should output 3
+console.log(Fibonacci(4));//should output 3
+
+/*CountOccurrences: Given an array of words and a separate word, count how many times 
+a particular word given occurs with that array
+Ex: input ["dog", "cat, "pig", "dog, "dog"], "dog"
+returns 3
+Pseudo Code:
+create a counter
+iterate through the  length of the array and check for each index if the word is equal to the checked word
+if it equals, then add it to the counter and if not then get out of the loop
+repeat
+*/
+let wordArr = ["dog", "cat", "cat", "dog" , "dog"]
+function occurencesOfWords (input, word){
+    let count = 0;
+    for( let i = 0; i< input.length; i++){
+        if(input[i] === word){
+            count++;
+        }
+    }
+    return count;
+}
+console.log(occurencesOfWords(wordArr,"cat"));
