@@ -166,6 +166,17 @@ convert the string into an array by using split method
  let example =  'folder1/folder2/folder3'
 function ConvertStringArray(str){
     let convertString = str.split("/");
+    const urlObj = {};
+    urlObj.protocol = urlArray[0].slice(o, urlArray[0].length-1);
+    const colonIndex = urlArray[2].indexOf(':');
+
+    urlObj.host =urlArray[2].slice(0,colonIndex);
+    urlObj.port =parseInt(urlArray[2].slice(colonIndex + 1));
+    const pathArray = urlArray.slice(3, urlArray.length -1);
+    const pathString = pathArray.join('/');
+    urlObj.path = "/" + pathString;
+    urlObj.file = url(urlArray.length -1);
+
 }
 
 /*getPathParts: Given a full URL string, break it up into parts in an object 
@@ -191,3 +202,69 @@ const capitalWords = wordSample.map((word) => {
     }
     return capitalCounter;
 })
+
+/*
+correctCalcChecker: Given an array of objects with math equations, return all objects that have correct equations for
+example: [ { num1: 3, num2: 3, op: '/', result: 3}, { num1: 12, num2: 4, op: '-', result: 8}, { num1: 2, num2: 3, op: '+', result: 5}, { num1: -5, num2: -2, op: '*', result: 10} ]
+returns [ { num1: 12, num2: 4, op: '-', result: 8}, { num1: 2, num2: 3, op: '+', result: 5} ]
+*/
+function correctcalChecker (mathArray){
+    const correctArray = mathArray.filter((item) =>{
+        const mathResult = doMath(item.num1, item.num2, item.operation);
+        return mathResult === obj.results;//compare the math result with the item result
+    })
+     return correctArray;
+}
+
+function doMath( num1,num2,operator){
+    const operatorHandler = {
+        '+' : () =>num1+num2,
+        '-': () => num1-num2,
+        '*': () => num1 * num2,
+        '/': () => num1/num2
+    };
+    const result = operatorHandler[operator]();
+    return result;
+}
+
+/*Char Converter :Given the following function call:
+character_convert('the cat in the hat');
+And the resulting output:
+"11610410132999711632105110321161041013210497116"
+Pseudo code: 
+create a variable in the beginning so once the ascii characters are converted then append to the string
+Iterate through the array and convert each letter in the array an ascii value
+*/
+
+let wordToConvert = ("the cat in the hat");
+ function convertAscii(string){
+     let result = '';
+     for(let i =0; i<string.length; i++){
+         let asciiValue = string.charCodeAt(i);   
+         result += asciiValue;
+     }
+     return result;
+}
+
+
+/*Array factors 
+Build a function that takes one array and finds all other elements of the array that are factors of its an element
+Pseudo Code: 
+write a function that takes one parameter (arr)
+create an object for the final result
+iterate through the array  and find the factor for each number
+find the factor for each number 
+
+
+*/
+let arrayFactors=[4,2,8,6,3,9];
+// output: { 4: [2], 2: [], 8: [4,2], 6: [2,3], 3: [], 9: [3] }
+function Factor(arr){
+    let factorObj = {};
+    let remainder;
+    for(let i = 0; i< arr.length; i++){
+    remainder = Math.floor(arr[i] % 2=== 0);
+    factorObj[arr[i]] = remainder; 
+    }
+    return factorObj;
+}
