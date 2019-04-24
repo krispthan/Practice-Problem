@@ -262,9 +262,46 @@ let arrayFactors=[4,2,8,6,3,9];
 function Factor(arr){
     let factorObj = {};
     let remainder;
-    for(let i = 0; i< arr.length; i++){
-    remainder = Math.floor(arr[i] % 2=== 0);
-    factorObj[arr[i]] = remainder; 
+    for(let i = 0; i< arr.length; i++){//iterate through the array
+        factorObj[arr[i]] = []//create the object key for each 
+        for(let j = 0; j <arr.length; j++){//iterate through the individual numbers 
+            if(arr[i] !== arr[j]){//check if the current index is equal or not equal to the inner number
+                if(arr[i] % arr[j] === 0){//check if the current index is modular of the innner number
+                    factorObj[arr[i]].push(arr[j]);//if so, take the obj that you have created and add that inner number to the object
+                }
+            }
+        }
     }
     return factorObj;
 }
+
+/*Find all of the factors of a given number
+Pseudo Code:
+Create an empty array
+Write a function that takes in a number 
+create an array for output 
+iterate through the number and check if the num is a modular of the number 
+if so, push the number to a new array 
+
+and find all factors of the number
+then output it to a new array
+*/
+const factorOfNum = ((num) => {
+    let result = [];
+    for(let i = 0; i<= num; i++){
+        if(num % i ===0){
+            result.push(i);
+        }  
+    }
+    return result;
+})
+
+
+//simplify 
+const factorOfNum = num.map((value, index) => {
+    let result =[];
+    if(value % index === 0) {
+        result.push(index);
+    }
+    return result;
+})
