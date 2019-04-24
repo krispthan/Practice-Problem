@@ -167,3 +167,27 @@ convert the string into an array by using split method
 function ConvertStringArray(str){
     let convertString = str.split("/");
 }
+
+/*getPathParts: Given a full URL string, break it up into parts in an object 
+
+
+/*getCapitalCount: given an array of words, return a count of how many start with capital letters, For
+example: ['it','will','not','Be','long','Till','we','Are']
+returns: 3
+Pseudo Code : 
+create a counter for words that contains capital letters
+Iterate through the array to check for a capital letter in the word:
+conditional: check to see if at current letter is a capital letter
+if letter is capital letter, then increment the counter 
+if the word does not contain a capital letter, exit the loop
+repeat*/
+
+let wordSample = ['it','will','not','Be','long','Till','we','Are'];
+const capitalWords = wordSample.map((word) => {
+    let capitalCounter = 0;//create counter 
+    let regexp = /^[A-Z]/;
+    if(regexp.test(word)){
+        capitalCounter++;  
+    }
+    return capitalCounter;
+})
