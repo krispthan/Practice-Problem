@@ -296,12 +296,45 @@ const factorOfNum = ((num) => {
     return result;
 })
 
+/*Given an object with data for a person , generate a shipping label for them
+input: [ { "familyName": "McGee", "givenName": "Chuckles", "greeting": "Miss.", "age": 28, "height": 165, "colors": { "eye": "green", "hair": "green" }, "home address": { "streetNumber": "12345", "streetName": "Any St", "state": "Mo", "zip": 63102, "city": "Kansas City" } } ]
+return "Miss. Chuckles McGee\n12345 Any St\nKansas City, Mo 63102"
+Pseudo Code: iterate through the list of object and access needed key/value pairs*/
 
-//simplify 
-const factorOfNum = num.map((value, index) => {
-    let result =[];
-    if(value % index === 0) {
-        result.push(index);
+const personInfo= [ { "familyName": "McGee", "givenName": "Chuckles", "greeting": "Miss.", "age": 28, "height": 165,
+ "colors": { "eye": "green", "hair": "green" },
+  "home address": { "streetNumber": "12345",
+   "streetName": "Any St", "state": "Mo", 
+   "zip": 63102, "city": 
+   "Kansas City" } } ]
+
+    function shippingLabel() {
+        return  `${personInfo[0].greeting} ${personInfo[0].givenName} ${personInfo[0].familyName} ${personInfo[0]["home address"]["streetNumber"]}
+        ${personInfo[0]["home address"]["streetName"]} ${personInfo[0]["home address"]["city"]}, ${personInfo[0]["home address"]["state"]} ${personInfo[0]["home address"]["zip"]}`
     }
-    return result;
-})
+    shippingLabel(personalInfo);
+
+    /*Build a function, do_math, that takes in 3 parameters: num1 (number), num2 (number), and operator (string)
+    */
+   const DoMath = (num1,num2, operator) => {
+    switch(operator){
+        case  "-":
+        return num1 - num2;
+        case "+":
+        return num1+num2;
+        case "*":
+        return num1 * num2;
+        case "/" :
+        return num1 / num2;
+    }
+   };
+   
+   /* random number in an array
+   Pseudo Code: Create a random generate
+  declare a variable with the array :
+  -inside the array index we will be generating each of the indexes by the length of the array
+*/
+const num =[1,2,3,4,5,6,7,8,9,10];
+const randomNumber = num[Math.floor(Math.random() * num.length)];
+console.log(randomNumber);
+  
