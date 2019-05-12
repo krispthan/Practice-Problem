@@ -337,4 +337,19 @@ const personInfo= [ { "familyName": "McGee", "givenName": "Chuckles", "greeting"
 const num =[1,2,3,4,5,6,7,8,9,10];
 const randomNumber = num[Math.floor(Math.random() * num.length)];
 console.log(randomNumber);
-  
+
+/*Reverse String
+Given a string, return an ew string with the reversed order of characters
+Pseudo Code:  convert the string into an array
+then call the reverse method 
+ turn it back into a string 
+*/
+let word = "happy";
+function reverseString(str){
+    let convertStr= str.split("");// takes the str and turns into an array
+    convertStr.reverse();//reverse the str
+    return convertStr.join("");//join all elements back into a string
+}
+
+//alternate solutions without reverse Method 
+
