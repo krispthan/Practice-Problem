@@ -312,7 +312,7 @@ const personInfo= [ { "familyName": "McGee", "givenName": "Chuckles", "greeting"
         return  `${personInfo[0].greeting} ${personInfo[0].givenName} ${personInfo[0].familyName} ${personInfo[0]["home address"]["streetNumber"]}
         ${personInfo[0]["home address"]["streetName"]} ${personInfo[0]["home address"]["city"]}, ${personInfo[0]["home address"]["state"]} ${personInfo[0]["home address"]["zip"]}`
     }
-    shippingLabel(personalInfo);
+   
 
     /*Build a function, do_math, that takes in 3 parameters: num1 (number), num2 (number), and operator (string)
     */
@@ -351,5 +351,105 @@ function reverseString(str){
     return convertStr.join("");//join all elements back into a string
 }
 
-//alternate solutions without reverse Method 
+/*alternate solutions without reverse Method :
+Pseudo code: create an empty string called reverse
+for each character in the string, take the character and add it to the start of the "reversed"
+return the variable reversed*/
 
+function reverseStr(str){
+    let reversed = '';// create a temp string 
+  for(let character of str) {//iterate through each character and then add it to the reversed;
+      reversed = character + reversed;
+  }
+  return reversed; 
+};
+
+/*third solution using a helper
+Pseudo code: take string convert into array 
+call a reduce helper to condense the array into a single value 
+*/
+let words = "happy";
+function reverseStr(str){
+   return  str.split("").reduce((reversed, letter) =>
+ letter + reversed
+ , '');
+};
+
+
+/*Palindrome: Give a string, return true if the string is a palindrome or false if not 
+Palindrome are strings that form the same word if it is reversed
+Pseudo Code: Reversed the str by splitting the str and converting it into an array and then using the reversed method 
+*/
+// let word = ("abba");
+function isPalindrome(str){
+   const reverseStr = str.split("").reverse().join("");//reverse the str
+    str === reversedStr ? true :false;
+}
+/*alternate solution using array helper
+Pseudo Code: take a string and turn into array using split("");
+then use a every() method to test whether all elements in the array */
+
+function isPalindrome(str){
+    return str.split("").every((character, i) =>{
+        return character === str[str.length - i -1] ; 
+    });
+}
+
+
+/*ReveseInt Given an integer, return an integer that is the reversed ordering of the number
+Ex: 15 === 51 or 981===189
+Pseudo Code: convert the number into a string .toString() method and then use the reversed method and join the string back
+check if the int is positive or negative , if positive then return  parseInt() to convert string back to number, if negative then parseInt(the reversed number ) and multiply by -1  */
+let myNum = 25;
+function reverseInt(n){
+    const numToString = n.toString().split("").reverse().join("");// reverse the number convert to string to reversed
+   if(n < 0){
+    return parseInt(numToString) * -1;
+   }
+   return parseInt(numToString); 
+}
+
+/*MaxChar Given a string, return the character that is most commonly used in a string
+ex: ("aaaabbbbccccccccccd")= "c"
+Pseudo Code: Take the string and convert into an object
+Key: is the letter and value : number of times the letter appear */
+ let string = "Hello There!"
+function maxChar(str){
+    const charObj = {};//create an obj;
+    let max = 0; //use to compare the current highest frequency of characters
+    let maxCharacter = '';//check the current character that has the highest 
+    for(let character of str){//iterate through the string 
+        if(charObj[character]){//create the obj during the iteration and check if the current index has the specific character , if yes, then increment it, if no then equal to 1 
+            charObj[character]++;
+        } else {
+            charObj[character]=1;
+        }
+    }
+    for(let character in charObj ){  //iterate through an object
+      if(charObj[character]> max){//check if the current frequency is more than the max 
+          max = charObj[character];
+          maxChar = charObj;
+      }
+    }
+    return maxCharacter;
+};
+ 
+/*FizzBuzz Write a problem that console logs the number from 1 to n. Multiples of three print fizz and multiples of five print buzz
+Pseudo Code: loop to each number till reached nth length ,
+check if each number is a multiple of 3 or 5 and both , if multiple of 3, print fizz , if multiple of 5, print buzz, if multiple of both print out fizzbuzz
+*/
+
+function fizzBuzz(n){
+    for ( i= 1; i <=n; i++){//iterate through the number from 1 to nth length
+        // check to see if the number a multiple 3 & 5 ?
+        if (i % 15 === 0){
+            console.log("fizzbuzz");
+        } else if (i % 3 === 0){//check if the number is a multiple of 3
+            console.log("fizz");
+    } else if (i % 5 === 0){ // check if the number is a multiple of 5
+        console.log("buzz");
+    } else {
+        console.log(i);
+    }
+  }
+}
