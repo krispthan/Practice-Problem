@@ -529,3 +529,45 @@ function anagrams(stringA,stringB){
 function cleanString (str){
     return str.replace(/[^\w]/g,"").toLowerCase().split("").sort().join("");// split this to turn this into an array in order to sort it and then join it back into a string 
 }
+
+
+/*Capitalization Write a function that accepts a string. The function should captialize the first letter of each word in teh string and return the capitalize string
+Ex: capitalize('a short sentence) => "A Short Sentence"
+Pseudo Code:   
+        for each word in the array :
+        uppercase the first letter of the word 
+        join the first letter with rest of string 
+        push result into words array
+        join word into a string and return it
+*/
+
+function capitalization(str){
+    //make an empty arr "words"
+    const words = [];
+    //split the input string by spaces to get an array
+    const splitBySpace = str.split(' ');
+    for(let word of splitBySpace){//iterate through each word by space
+       let changeCharacter = word[0].toUpperCase() + word.slice(1)//slice the word by index 1 
+       words.push(changeCharacter)//push the result to words
+    }
+   return words.join(" ")// joining all the word together with the spaces
+}
+  
+/*Alternate Solution :
+create an empty string called "result" and capitalize the first character of the input string 
+for each character in the string 
+    -if the character to the left a space : capitalize it and add it to the resullt 
+    -else add it to result*/
+
+    function capitalize2(str){
+        let result = str[0].toUpperCase();//create an empty string and capitalize the string
+        for(let i= 1; i< str.length; i++){//iterate the string
+            if(str[i-1] === ' '){//check the string of the character to the left and check if its a space " "
+            let uppercaseString = str[i].toUpperCase();
+            result += uppercaseString// add the string to the result 
+         } else {
+             result += str[i];// if theres no space in on the left side then just add the character from the string to the result
+        }
+    }
+        return result;
+    }
