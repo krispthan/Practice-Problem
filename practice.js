@@ -487,5 +487,45 @@ Pseudo Code: Create an empty array to hold our data
             return output;
         }
           
+/*Anagrams Check to see if two provided strings are anagrams of each other 
+One string is an anagram of another if it uses the same character in the same quantity , only consider characters not spaces or punctuations
+Consider capital letters to be the same as lowercase
+Ex: anagrams ('rail saftey', fairy tales')=> true
+*/
 
-    
+function anagrams(stringA, stringB){
+    const aCharMap = buildCharacterMap(stringA);//create an obj to map through stringA
+    const bCharMap = buildCharacterMap(stringB);//create an obj to map through stringB
+
+    if(Object.keys(aCharMap).length != Object.keys(bCharMap).length){//compare the object keys for both stringA and stringB obj to check if the length is the same or not 
+        return false;//if does not match, then return false
+    } 
+    for (let char in bCharMap){
+        if(aCharMap[char] !==bCharMap[char]){
+            return false;
+        }
+    }
+    return true;
+}
+
+//create a helper function in order to create the two strings 
+function  buildCharacterMap(str){
+    const characterMap = {};
+    const cleanedString = str.replace(/[^\w]/g,"").toLowerCase();
+    for(let character of cleanedString){//iterating through the current string
+        characterMap[character] +=1 || 1;
+    }
+    return characterMap;
+}
+
+/*Alternate Solution */
+
+function anagrams(stringA,stringB){
+    return cleanString(stringA) === cleanString(stringB)// to compare the two strings together 
+
+}
+
+//helper function -//replace both stringA & B to get rid of any spaces or punctuation and lowercase 
+function cleanString (str){
+    return str.replace(/[^\w]/g,"").toLowerCase().split("").sort().join("");// split this to turn this into an array in order to sort it and then join it back into a string 
+}
