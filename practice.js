@@ -453,3 +453,39 @@ function fizzBuzz(n){
     }
   }
 }
+/*Array Chunk Given an array and chunk size, didie the array in many subarray where each subarray is of length size
+Ex: chunk([1,2,3,4],2) => [[1,2],[3,4]];
+Pseudo Code: Create an empty array to hold our data
+    For each elements in the original array and iterate through it: - Retrieve the last element in chunked element
+        if last element does not exits, or is its length is equal to the chunk size , then push a new chunk into chunked with curernt element
+        else, add the current element into the chunk*/
+
+        function arrayChunks(arr,size){
+            const chunked = [];
+            for (let element of arr){//iterate through the arr
+                const lastElement = chunked[chunked.length-1]; //create a temp variable for the last element
+                if(!lastElement || lastElement.length === size){
+                    chunked.push([element]);// take the last element and push a new chunk into the chunked array
+                } else {
+                    lastElement.push(element);
+                }
+            }
+            return chunked;
+        }
+
+        /*alternate solution */
+        function arrChunk(arr,size){
+            //create an empty array
+            const output = [];
+            //create "index" starting at 0, which will change over time 
+            let index = 0;
+            //while index is less than array.length:
+            while (index < arr.length){
+                output.push(arr.slice(index,index+size));// push the sliced array starting from the index and the index + number of size 
+                index = index + size;   //add "size" to "index"
+            }
+            return output;
+        }
+          
+
+    
