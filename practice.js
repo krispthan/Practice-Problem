@@ -571,3 +571,59 @@ for each character in the string
     }
         return result;
     }
+    /*Printing Steps Write a function that accepts a positive number N.
+    The function should console.log each step with n levels using the # character. Make sure the steps have spaces on the right hand side
+ */
+
+    function steps(n){
+        for (let row  = 0; row < n; row++){ // from 0 to n ( iterate through rows)
+            let steps = []; // create an empty string "steps"
+            for (let column = 0; column < n; column++){// iterate from 0 to n (iterate through column)
+                if(column <= row){//check if the column is equal or less than row if so,
+                    steps +='#' // add the "#" to the steps
+                } else { 
+                    steps =+ " "; // if not add " "
+                }
+            }
+            console.log(steps);
+        }
+    }
+
+    /*Alternative Solution: Recursive*/
+    function steps2(n , row = 0, step = ''){
+        if(n===row) {
+            return;
+        }
+        if(n ===step.length){
+            console.log(step);
+            return steps2(n, row + 1, step);
+        }
+        if (step.length <= row){
+            step += '#';
+        } else {
+            step += ' ';
+        }
+        steps2(n, row, step);
+    }
+
+    /*Find the Vowels used in a string . Vowles are the characters 'a', 'e', 'i', 'o', 'u'
+    Ex: vowels(Hi! There )=> 3 */
+
+    function vowels(str){
+        let count = 0; // create a counter
+        const checkLetters = ["a","e","i","o","u"];
+        let lowercaseStr = str.toLowerCase();
+        for (let char of lowercaseStr){//iterate through the vowels
+            if (checkLetters.includes(char)){//check if the character is included in the checkLetters
+                count++;
+            }
+        }
+        return count;
+    }
+
+    /*Alternative Solution using RegEx */
+
+    function vowels2(str){
+       const matches = str.match(/[aeiou]/gi); // check to see if any of the characters matches
+      return  matches ? matches.length : 0;// check to see if there are matches is true return matches.length or if false returns 0 
+    }
