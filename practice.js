@@ -27,26 +27,6 @@ const greaterThan = input.filter((item) =>{
 })
 
 
-/*Fibonacci Sequence 
-Pseudo Code: 
-write a function that takes in one parameter and prints out the Fibonacci sequence
-start with the first two indexes @ starting point Ex: 0+1 = 1, do not touch these two 
-iterate through the array starting at the second indexes and go through the array until you reach (n+1)
-inside the array take the original array and add the current (index[i-2] + index[i-1]), whatever number that equates to be 
-will be the new number to go into the original array since we need to continue adding the 
-second indexes with its neighbor indexes to get the next fibonacci number
-
-take the total of the starting point and add it up with the next index a[i+1]= 1 + 1 = 2
-repeat 
-*/
-
- function Fibonacci(n){
-    let input = [ 0, 1]
-     for(let i= 2; i <  n+ 1; i++){
-        input.push(input[i-2] + input[i -1])
-     }
-     return input[n];
- }
 
 
 /*CountOccurrences: Given an array of words and a separate word, count how many times 
@@ -79,12 +59,10 @@ Ex: input ['canary','silly','dog','a','mellow'])
 return [6,5,3,1,6]*/
 
  wordsArr= ['canary','silly','dog','a','mellow'];
-function wordLength (arr){
     const wordLengths = arr.map((word) => {
         return word.length;
    })   
-     return wordLengths;
-}
+
 
 /*getMinMaxMean: given an array of numbers, get the minimum, maximum, and mean numbers. 
 Return them as an object. 
@@ -97,13 +75,14 @@ numberArr = [3,1,9,12,4];
 function Average (index){
     let total = 0;
     for(let i =0 ; i< index.length; i++){
-        total += index[i];
-        
+        total += index[i];  
     }
     let average = total / index.length;
     return average; 
 }
-console.log(Average(numberArr));
+
+Math.max.apply(null, numberArr);
+Math.min.apply(null,numberArr);
 /* find the last element of the array since we are going to only iterate through the second index to the last array
 then create a swap variable to check if the swap condition is true
 create a do loop and change the swap variable to false
@@ -116,23 +95,20 @@ change the swap condition to be true
 get out of the do loop and check while the swap is equal to true 
 */
 function BubbleSort(arr){
-    let arrLength = arr.length -1;
-    let swapped;
-    do {  
-        swapped= false;
-        for( let i = 0 ; i <arrLength; i++){
-            if(arr[i] > arr[i +1]){
-                let temp = arr[i];
-                arr[i] = arr[i+1];
-                arr[i+1] =temp;
-                swapped = true;
-            }
-        }
-    }
-    while (swapped === true);
-  
-}
+    const arrLength = arr.length;
 
+    for(let i =0; i < arrLength; i++){
+        for(let j = 0; i<arrLength; j++){//loop through the arrlength
+            if(arr[j]  > arr[j +1]){// comparing adjacent items 
+                //swap
+                let temp = arr[j];
+                arr[j]= arr[j+1];
+                arr[j+1] = temp;
+            }
+       }
+    }
+    return arr;
+}
 
 /*findMode: Given an array of numbers, find the number that occurs the most often for example:
 input [5,2,7,18,2,42,5,2]
@@ -165,8 +141,8 @@ convert the string into an array by using split method
   */
  let example =  'folder1/folder2/folder3'
 function ConvertStringArray(str){
-    let convertString = str.split("/");
-    const urlObj = {};
+    let convertString = str.split("/");//convert to string array
+    const urlObj = {};//create an object
     urlObj.protocol = urlArray[0].slice(o, urlArray[0].length-1);
     const colonIndex = urlArray[2].indexOf(':');
 
@@ -196,7 +172,7 @@ repeat*/
 let wordSample = ['it','will','not','Be','long','Till','we','Are'];
 const capitalWords = wordSample.map((word) => {
     let capitalCounter = 0;//create counter 
-    let regexp = /^[A-Z]/;
+    let regexp = /^[A-Z]/;//check to see if each letter are capitalize
     if(regexp.test(word)){
         capitalCounter++;  
     }
@@ -667,4 +643,53 @@ for each character in the string
             startCol++;
         }
         return results;
+    }
+
+    /*Fibonacci Print out the nth entry in the fibonacci series */
+    function fibonacci (n){
+        const initialNum = [0,1];
+        for (let i = 2; i<= n; i++){//iterate through the nth length
+            const a = initialNum[i -1];
+            const b = initialNum [i-2];
+            initialNum.push(a+b);
+        }
+        return initialNum[n];
+}
+
+    /*Alternative Solution Recursive*/
+    function fibionacciRecursive(n){
+        if(n <2){//get the base case first 
+            return n;
+        } 
+        return fibionacciRecursive(n-1) +fibionacciRecursive(n-2);
+    }
+
+    /*We can use Memoization to increase performance by writing another memoization function */
+    function memoize(fn){
+        const cache = {}; 
+        return function(...args){//passing in the all the arguments from the array 
+            if(cache[args]){//check if any of the argument exits in the cache
+                return cache[args];// if we have, then return the argument
+            }
+            const result = fn.apply(this, arg)//  use apply when we are calling the current function with the value of this and using the argument from the array 
+                cache[args] = result; 
+                return result;
+        };
+    }
+
+    const fib = memoize(fibionacciRecursive);
+
+    /*Create a Queue data structure: The queue should be a class with methods add and remove  */
+    class Queue {
+        //initialize an array and assign it to instance of a queue that was created
+        constructor(){
+            this.data = [];
+
+        }
+        add(record){
+            this.data.unshift(record);
+        }
+        remove(){
+            return this.data.pop();
+        }
     }
