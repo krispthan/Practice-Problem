@@ -627,3 +627,44 @@ for each character in the string
        const matches = str.match(/[aeiou]/gi); // check to see if any of the characters matches
       return  matches ? matches.length : 0;// check to see if there are matches is true return matches.length or if false returns 0 
     }
+
+    /*Write a function that accepts an integer N and returns NxN spiral matrix*/
+    function matrixSpiral(n){
+        const results = []; //create an empty array 
+        for(let i =0; i< n; i++){
+            results.push([]);
+        }
+        let counter = 1// create a counter
+        let startCol = 0;//declare startCol initialize 0
+        let endCol = n-1;
+        let startRow= 0;
+        let endRow = n -1;
+
+        while(startCol <= endCol && startRow <= endRow){//as long as starCol is less or equal to endCol and startRow is less than or equal to endRow
+            //top row 
+            for (let i = startCol ; i <= endCol; i++){
+                results[startRow][i]=== counter;
+                counter++;
+            }
+            startRow++;
+            //Right column
+            for (let i = startRow; i<=endRow; i++){
+                results[i][endCol] = counter;
+                counter++;
+            }
+            endCol--;
+            //Bottom Row
+            for(let i = endCol; i >= startCol; i--){
+                results[endRow][i] = counter;
+                counter++;
+            }
+            endRow--;
+            //startCol
+            for(let i =endRow; i>=startRow; i--){
+                results[i][startCol] = counter;
+                counter++;
+            }
+            startCol++;
+        }
+        return results;
+    }
