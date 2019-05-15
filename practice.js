@@ -740,3 +740,46 @@ for each character in the string
         return gcd(smaller (larger % smaller)); // recursively call the function again , this time with the smaller remaining number and with the (larger % smaller Number)
     } 
 }
+
+
+/*Deleting Duplicates with two given arrays*/
+let input1 =[1,2,3,4];
+let input2=[1,2,3,4,5];
+
+function deleteDuplicates(arr1,arr2){
+    let combinedArr = [...arr1,...arr2];//using the spread operator to concatenate the two array into one big array
+    let set  = new Set(combinedArr)// use the new Set() constructor to gather up all alike elements from array and remove them
+    let newArr = [...set];//using the spread operator to join all the current elements from the original set back to an array
+    return newArr;
+}
+
+/*Merge Sort Array */
+
+let array = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
+
+
+function mergeSort(arr){
+    if(arr.length < 2){// check if the arr length is smaller than 2 if so return arr
+        return arr;
+    }
+    var middle = Math.floor(arr.length/2); //check for the middle elements in the array
+    var left = arr.slice(0,middle);//check for the left elements in the array
+    var right = arr.slice(middle);//check for the right elements in the array
+
+    return helperMergeSort(mergeSort(left), mergeSort(right));// use the helper function to return the mergeSorted right and left elements
+}
+
+function helperMergeSort(left,right){
+    let arr= [];//crate a new output
+
+    while(left.length && right.length){// check the conditions length of the right and left side: 
+        if(left[0] < right[0]){// if first element of the left side is smaller than right :
+            arr.push(left.shift());// push it to the left front of the output array
+        } else{
+            arr.push(right.shift());// if not push the right element to the front of the array
+        }
+    }
+    return arr.concat(left.slice().concat(right.slice())); // return the concatenation of array output and both left and right elements array
+}
+
+console.log(helperMergeSort(array.slice())); 
