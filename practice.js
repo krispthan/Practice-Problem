@@ -325,6 +325,13 @@ function reverseString(str){
     return convertStr.join("");//join all elements back into a string
 }
 
+
+/* Reverse in place */
+function reverseInPlace(str){
+
+        return str.split("  ").reverse().join(" ").split("").reverse().join();
+}
+
 /*alternate solutions without reverse Method :
 Pseudo code: create an empty string called reverse
 for each character in the string, take the character and add it to the start of the "reversed"
@@ -783,3 +790,16 @@ function helperMergeSort(left,right){
 }
 
 console.log(helperMergeSort(array.slice())); 
+
+/*Sum of Two Array From an unsorted array , check whether there are any two numbers that will sum up a given number */
+let input = ([6,4,3,2,12,2],5);
+function sumArr(arr, sum){
+    let arrLength = arr.length;// get the length of the arr
+    for(let i = 0 ; i<arrLength-1; i++){//loop through the array starting from 0 index
+        for(let j= i+1; j<arrLength; j++){// do a second inner loop through array starting at the adjacent element j = i+1
+            if(arr[i] +arr[j] ===sum)// check if the sum of the first element and the second element in the array equals the sum 
+             return true;//if so, return true
+        }
+    }
+    return false;// if not , return false
+}
