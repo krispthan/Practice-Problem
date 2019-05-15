@@ -173,10 +173,10 @@ let wordSample = ['it','will','not','Be','long','Till','we','Are'];
 const capitalWords = wordSample.map((word) => {
     let capitalCounter = 0;//create counter 
     let regexp = /^[A-Z]/;//check to see if each letter are capitalize
-    if(regexp.test(word)){
-        capitalCounter++;  
+    if(regexp.test(word)){// test is a helper method that will search for a match between a regular expression and specificed string 
+        capitalCounter++;  //if yes, increment the counter 
     }
-    return capitalCounter;
+    return capitalCounter;//return the counter
 })
 
 /*
@@ -184,13 +184,12 @@ correctCalcChecker: Given an array of objects with math equations, return all ob
 example: [ { num1: 3, num2: 3, op: '/', result: 3}, { num1: 12, num2: 4, op: '-', result: 8}, { num1: 2, num2: 3, op: '+', result: 5}, { num1: -5, num2: -2, op: '*', result: 10} ]
 returns [ { num1: 12, num2: 4, op: '-', result: 8}, { num1: 2, num2: 3, op: '+', result: 5} ]
 */
-function correctcalChecker (mathArray){
     const correctArray = mathArray.filter((item) =>{
         const mathResult = doMath(item.num1, item.num2, item.operation);
         return mathResult === obj.results;//compare the math result with the item result
     })
      return correctArray;
-}
+
 
 function doMath( num1,num2,operator){
     const operatorHandler = {
@@ -237,7 +236,6 @@ let arrayFactors=[4,2,8,6,3,9];
 // output: { 4: [2], 2: [], 8: [4,2], 6: [2,3], 3: [], 9: [3] }
 function Factor(arr){
     let factorObj = {};
-    let remainder;
     for(let i = 0; i< arr.length; i++){//iterate through the array
         factorObj[arr[i]] = []//create the object key for each 
         for(let j = 0; j <arr.length; j++){//iterate through the individual numbers 
@@ -312,7 +310,7 @@ const personInfo= [ { "familyName": "McGee", "givenName": "Chuckles", "greeting"
 */
 const num =[1,2,3,4,5,6,7,8,9,10];
 const randomNumber = num[Math.floor(Math.random() * num.length)];
-console.log(randomNumber);
+
 
 /*Reverse String
 Given a string, return an ew string with the reversed order of characters
@@ -359,7 +357,7 @@ Pseudo Code: Reversed the str by splitting the str and converting it into an arr
 // let word = ("abba");
 function isPalindrome(str){
    const reverseStr = str.split("").reverse().join("");//reverse the str
-    str === reversedStr ? true :false;
+    str === reverseStr ? true :false;
 }
 /*alternate solution using array helper
 Pseudo Code: take a string and turn into array using split("");
@@ -429,7 +427,7 @@ function fizzBuzz(n){
     }
   }
 }
-/*Array Chunk Given an array and chunk size, didie the array in many subarray where each subarray is of length size
+/*Array Chunk Given an array and chunk size, output the array in many subarray where each subarray is of length size
 Ex: chunk([1,2,3,4],2) => [[1,2],[3,4]];
 Pseudo Code: Create an empty array to hold our data
     For each elements in the original array and iterate through it: - Retrieve the last element in chunked element
@@ -693,3 +691,52 @@ for each character in the string
             return this.data.pop();
         }
     }
+
+    /*Check for factorial of a number*/
+    function factorize(n){
+        let output =[];//create an array 
+        for(let i=1; i <=n; i++){//loop through the nth number length
+            if(n %i ===0){//check if the current number is modulus of the current index if so push to the new array
+                output.push(i);
+            }
+        }
+        return output;
+    }
+
+    /*Find the Prime Number*/
+    function isPrime(n){
+        if(n< 2){//check if the number is less than 2 then return false Ex: 1 is not a prime number 
+            return false;
+        }
+        for(let i=2; i<n; i++){//loop through the nth number length 
+            if(n % i === 0){//check if the number modulus by current index is even return false, if not return true
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*Find the Prime Factors*/
+    function checkPrimeFactors(n){
+        let output = [];
+        for(let i=2; i<=n;i++){//loop through the nth number length starting at i=2 since we know anything less than two is a prime 
+            while((n%i) ===0){//while loop check the condition if n is modulus of current index is even, then presume
+                output.push(i)//push the current index to output array
+                n = n/i;// will replace the n with current number / current index to check for prime number
+            }
+        }
+        return output;
+    }
+
+
+    /*Find the Greatest Common Denominator*/
+    const gcd = function (num1,num2){
+        let smaller = Math.min(num1,num2);//find the smallest of these two numbers
+        let larger = Math.miax(num1,num2);//find the largest of these two numbers
+
+        if(larger % smaller ===0){// check if the larger number is divisible by the smaller number evenly, if so,
+        return smaller; //return smaller number
+    } else {
+        return gcd(smaller (larger % smaller)); // recursively call the function again , this time with the smaller remaining number and with the (larger % smaller Number)
+    } 
+}
