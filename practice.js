@@ -803,3 +803,64 @@ function sumArr(arr, sum){
     }
     return false;// if not , return false
 }
+
+/*Given an array, find the sum of the targeted value */
+function findSum(arr,sum){
+    let output= [];
+        for(let i =0; i<arr.length; i++){
+            for(let j=i+1; j< arr.length; j++){
+                if(arr[j] === sum - arr[i]){
+                    output.push([arr[i], arr[j]]);
+                }
+            }
+        }
+           return output;
+        
+}
+
+
+
+/*Linter */
+let story = 'Last weekend, I took literally the most beautiful bike ride of my life. The route is called "The 9W to Nyack" and it actually stretches all the way from Riverside Park in Manhattan to South Nyack, New Jersey. It\'s really an adventure from beginning to end! It is a 48 mile loop and it basically took me an entire day. I stopped at Riverbank State Park to take some extremely artsy photos. It was a short stop, though, because I had a really long way left to go. After a quick photo op at the very popular Little Red Lighthouse, I began my trek across the George Washington Bridge into New Jersey.  The GW is actually very long - 4,760 feet! I was already very tired by the time I got to the other side.  An hour later, I reached Greenbrook Nature Sanctuary, an extremely beautiful park along the coast of the Hudson.  Something that was very surprising to me was that near the end of the route you actually cross back into New York! At this point, you are very close to the end.';
+let storyWord = story.split(" "); // splitting the word by space 
+
+/*filter out unnecessary words in the story passage*/
+let unnecessaryWords = ['extremely', 'literally', 'actually' ];
+const betterWords = storyWord.filter(word => !unnecessaryWords.includes(word));
+
+/* Check how many times the words have been used  given the overused array*/
+let overusedWords = ['really', 'very', 'basically'];
+const overUsedWords = storyWord.every(word => {
+    let tallyReally = 0;
+    let tallyVery= 0;
+    let tallyBasically = 0;
+    if(word === 'really'){
+        tallyReally = tallyReally+ word;
+    } else if ( word = 'very'){
+        tallyVery = tallyVery + word;
+    } else if (word === 'basically'){
+        tallyBasically = tallyBasically + word;
+    }
+    return {tallyReally, tallyVery, tallyBasically};
+})
+//  
+let tallyReally = 0;
+let tallyVery= 0;
+let tallyBasically = 0;
+for(word in storyWord){
+    if(word === 'really'){
+        tallyReally +=1;
+    } else if ( word = 'very'){
+        tallyVery +=1;
+    } else if (word === 'basically'){
+        tallyBasically +=1;
+    }
+}
+// check how many sentences are in the paragraph
+let sentenceCount = 0;
+for (word of storyWord){
+    if(word[word.length-1] == "." || word[word.length-1] ==='!'){
+        sentenceCount += 1;
+    } 
+}
+
